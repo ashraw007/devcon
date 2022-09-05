@@ -62,3 +62,7 @@ typings/
 
 # next.js build output
 .next
+
+/node_modules
+package-lock.json
+/config/keys_dev.js
