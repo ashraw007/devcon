@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
+import DC from '../../img/DC.png';
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -62,24 +63,24 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div className="container">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient mb-4">
+        <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             DevCon
           </Link>
           <button
             className="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#mobile-nav"
-            aria-controls="mobile-nav"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse" id="mobile-nav">
+          <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">

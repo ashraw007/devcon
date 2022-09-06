@@ -73,7 +73,11 @@ class Login extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className="d-grid gap-2">
+                 <button type="submit" className="btn btn-info btn-block mt-4">
+                  Login
+                 </button>
+                </div>
               </form>
             </div>
           </div>

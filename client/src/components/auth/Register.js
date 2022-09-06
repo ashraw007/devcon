@@ -96,7 +96,11 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password2}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className="d-grid gap-2">
+                 <button type="submit" className="btn btn-info btn-block mt-4">
+                  Submit
+                 </button>
+                </div>
               </form>
             </div>
           </div>

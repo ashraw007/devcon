@@ -52,7 +52,8 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <div className="LaptopView">
+       <Provider store={store}>
         <Router>
           <div className="App">
             <Navbar />
@@ -106,6 +107,8 @@ class App extends Component {
           </div>
         </Router>
       </Provider>
+      </div>
+      
     );
   }
 }

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import GJULogo from '../../img/GJU.png'
-import DC from "../../img/DC.png"
 
 class Landing extends Component {
   componentDidMount() {
@@ -19,9 +18,8 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <img className="display-4 mt-12" style={{ width: '350px', marginTop: '-10px'}} src={GJULogo}  alt="LOGO" />
-                <h1 className="display-6 mb-4">Guru Jambheswar University of Science and Technology</h1>
-                <img style={{width: '150px'}} src={DC} alt="LOGO"/>
+                <img className="display-4 mt-12"  style={{width: '250px'}} src={GJULogo}  alt="LOGO" />
+                <h1 className="display-6 mb-4">Guru Jambheshwar University of Science and Technology</h1>
                 <p className="lead">
                   {" "}
                   A platform where GJU developers connect and share
