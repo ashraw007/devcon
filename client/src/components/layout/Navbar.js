@@ -17,7 +17,7 @@ class Navbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/feed">
             Post Feed
@@ -48,7 +48,7 @@ class Navbar extends Component {
     );
 
     const guestLinks = (
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/register">
             Sign Up
@@ -63,8 +63,9 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient mb-4">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark  mb-4">
         <div className="container-fluid">
+          <img style={{width: '70px'}} src={DC} alt="Logo"/>
           <Link className="navbar-brand" to="/">
             DevCon
           </Link>
@@ -81,7 +82,7 @@ class Navbar extends Component {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav me-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {" "}

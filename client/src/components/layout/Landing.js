@@ -13,19 +13,19 @@ class Landing extends Component {
 
   render() {
     return (
-      <div className="landing">
+      <div className="landing ">
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
-                <img className="display-4 mt-12"  style={{width: '250px'}} src={GJULogo}  alt="LOGO" />
-                <h1 className="display-6 mb-4">Guru Jambheshwar University of Science and Technology</h1>
-                <p className="lead">
+              <div className="col-mt-12 text-center">
+                <img className="display-4 mt-4"  style={{width: '250px'}} src={GJULogo}  alt="LOGO" />
+                <h1 className="display-6 mt-4">Guru Jambheshwar University of Science and Technology</h1>
+                <p className="lead mt-4">
                   {" "}
                   A platform where GJU developers connect and share
                 </p>
                 <hr />
-                <div className="d-grid gap-2 col-6 mx-auto">
+                <div className="d-grid gap-2 col-6 mx-auto mt-4">
                 <Link to="/register" className="btn btn-lg btn-info btn-block mr-2">
                   Sign Up
                 </Link>
