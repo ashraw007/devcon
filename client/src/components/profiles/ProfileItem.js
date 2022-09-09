@@ -16,7 +16,7 @@ class ProfileItem extends Component {
       />)
 
     return (
-      <div className="card card-body bg-light mb-3">
+      <div className="card card-body bg-secondary mb-3">
         <div className="row">
           <div className="col-2">
             {image}

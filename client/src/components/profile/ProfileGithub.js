@@ -37,13 +37,13 @@ class ProfileGithub extends Component {
     console.log(repos)
 
     const repoItems = repos.map(repo => (
-      <div key={repo.id} className="card card-body mb-2">
+      <div key={repo.id} className="card card-body border-success mb-2">
         <div className="row">
           <div className="col-md-6">
             <h4>
               <Link
                 to={repo.html_url}
-                className="text-info"
+                className="text-primary"
                 target="_blank"
                 rel="noopener noreferrer">
                 {repo.name}

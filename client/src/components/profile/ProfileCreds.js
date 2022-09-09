@@ -6,7 +6,7 @@ class ProfileCreds extends Component {
     const { experience, education } = this.props;
 
     const expItems = experience.map(exp => (
-      <li key={exp._id} className="list-group-item">
+      <li key={exp._id} className="list-group-item border-success">
         <h4>{exp.company}</h4>
         <p>
           <Moment date={exp.from} format="DD/MM/YYYY" /> -
@@ -37,7 +37,7 @@ class ProfileCreds extends Component {
     ));
 
     const eduItems = education.map(edu => (
-      <li key={edu._id} className="list-group-item">
+      <li key={edu._id} className="list-group-item border-success">
         <h4>{edu.school}</h4>
         <p>
           <Moment date={edu.from} format="DD/MM/YYYY" /> -
@@ -67,8 +67,8 @@ class ProfileCreds extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-6">
-          <h3 className="text-center text-info">Experience</h3>
+        <div className="col-md-6 ">
+          <h3 className="text-center text-primary">Experience</h3>
           {expItems.length > 0 ? (
             <ul className="list-group">{expItems}</ul>
           ) : (
@@ -76,7 +76,7 @@ class ProfileCreds extends Component {
           )}
         </div>
         <div className="col-md-6">
-          <h3 className="text-center text-info">Education</h3>
+          <h3 className="text-center text-primary">Education</h3>
           {eduItems.length > 0 ? (
             <ul className="list-group">{eduItems}</ul>
           ) : (
