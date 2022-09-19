@@ -4,7 +4,7 @@ A MERN stack social media app which is used to connect developers to each other.
 
 ### How to get it up and running
 
-First go ahead and clone this repository either by downloading the .ZIP file or by entering `https://github.com/ashraw007/dev-connector.git` into your terminal.
+First go ahead and clone this repository either by downloading the .ZIP file or by entering `https://github.com/ashraw007/devcon.git` into your terminal.
 
 Next to install the dependancies and run this project requires [Node JS & NPM package manager](https://www.nodejs.org) version 10 or higher.
 
