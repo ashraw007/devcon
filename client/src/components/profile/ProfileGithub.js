@@ -35,15 +35,17 @@ class ProfileGithub extends Component {
     const  repos  = this.state.repos;
 
     console.log(repos)
+    
 
     const repoItems = repos.map(repo => (
+      console.log(repo.html_url),
       <div key={repo.id} className="card card-body border-success mb-2">
         <div className="row">
           <div className="col-md-6">
             <h4>
               <Link
-                to={repo.html_url}
-                className="text-primary"
+                to={{pathname: repo.html_url}}
+                className="text-success"
                 target="_blank"
                 rel="noopener noreferrer">
                 {repo.name}
@@ -65,6 +67,7 @@ class ProfileGithub extends Component {
         <h3 className="mb-4">Latest Github Repos</h3>
         {repoItems}
       </div>
+      
     );
   }
 }
