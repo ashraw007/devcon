@@ -20,25 +20,29 @@ class ProfileGithub extends Component {
 
 
     fetch(
-       `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
+      `${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
+      //  `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
     )
       .then(res => res.json())
       .then(data => {
-        if (this.refs.myRef) {
-          this.setState({ repos: data });
-        }
+        this.setState({repos: data});
+        // if (this.refs.myRef) {
+        //   this.setState({ repos: data });
+        //   console.log(data);
+        // }
       })
       .catch(err => console.log(err));
   }
 
   render() {
     const  repos  = this.state.repos;
+    // console.log(this.state.props);
 
     console.log(repos)
     
 
     const repoItems = repos.map(repo => (
-      console.log(repo.html_url),
+      // console.log(repo.html_url),
       <div key={repo.id} className="card card-body border-success mb-2">
         <div className="row">
           <div className="col-md-6">
