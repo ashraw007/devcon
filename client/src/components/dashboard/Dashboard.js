@@ -85,7 +85,7 @@ class Dashboard extends Component {
               </div>
 
               <div className="mt-5">
-                <NewsGrid />
+                {/* <NewsGrid /> */}
               </div>
 
             </div>
