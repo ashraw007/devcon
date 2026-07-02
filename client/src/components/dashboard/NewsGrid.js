@@ -8,7 +8,7 @@ class NewsGrid extends Component {
 
     componentDidMount() {
         fetch(
-            `https://gnews.io/api/v4/search?q=artificial%20intelligence&lang=en&max=6&apikey=YOUR_GNEWS_API_KEY`
+            `https://gnews.io/api/v4/search?q=artificial%20intelligence&lang=en&max=6&apikey=65449bcaba1fe00e1341e3a37b0573fe`
         )
             .then(res => res.json())
             .then(data => {
