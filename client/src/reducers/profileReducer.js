@@ -11,7 +11,7 @@ const initialState = {
   loading: false
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case PROFILE_LOADING:
       return {
@@ -32,8 +32,9 @@ export default function(state = initialState, action) {
       };
     case CLEAR_CURRENT_PROFILE:
       return {
-        ...state,
-        profile: null
+        profile: null,
+        profiles: null,
+        loading: false
       };
     default:
       return state;

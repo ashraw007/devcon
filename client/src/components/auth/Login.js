@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import DevCon_logo from "../../img/devcon_logo.png";
+import Spinner from "../common/Spinner";
 
 class Login extends Component {
   constructor() {
@@ -10,7 +12,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
+      loader: false
     };
   }
 
@@ -26,17 +29,23 @@ class Login extends Component {
     }
 
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      this.setState({
+        errors: nextProps.errors,
+        loading: false
+      });
     }
   }
 
   onSubmit = e => {
     e.preventDefault();
 
+    this.setState({ loading: true });
+
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
+
     this.props.loginUser(userData);
   };
 
@@ -45,43 +54,62 @@ class Login extends Component {
   };
 
   render() {
-    const { errors } = this.state;
+    const { errors, loading } = this.state;
 
     return (
-      <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
-                Sign in to your DevConnector account
-              </p>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
-                />
-                <div className="d-grid gap-2">
-                 <button type="submit" className="btn btn-info btn-block mt-4">
-                  Login
-                 </button>
-                </div>
-              </form>
-            </div>
+      <div className="register-page">
+        <div className="register-card">
+          <div className="text-center mb-4">
+            <img
+              src={DevCon_logo}
+              alt="DevCon Logo"
+              className="register-logo"
+            />
+
+            <h1 className="display-5 text-white fw-bold">
+              Log In
+            </h1>
+
+            <p className="text-white mb-0">
+              Welcome back to DevCon
+            </p>
           </div>
+
+          <form onSubmit={this.onSubmit}>
+            <TextFieldGroup
+              placeholder="Email Address"
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors.email}
+            />
+
+            <TextFieldGroup
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              error={errors.password}
+              showPasswordToggle
+            />
+
+            <button
+              type="submit"
+              className="btn submit-btn w-100 mt-3"
+              disabled={loading}
+            >
+              {loading ? "Signing In..." : "Login →"}
+            </button>
+          </form>
         </div>
+
+        {loading && (
+          <div className="loader-overlay">
+            <Spinner />
+          </div>
+        )}
       </div>
     );
   }

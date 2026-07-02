@@ -25,35 +25,67 @@ class Profile extends Component {
 
   render() {
     const { profile, loading } = this.props.profile;
+
     let profileContent;
 
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <div>
-          <div className="row">
-            <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back To Profiles
-              </Link>
-            </div>
-            <div className="col-md-6" />
+        <>
+          <div className="mb-4">
+
+            <Link
+              to="/profiles"
+              className="btn btn-outline-light back-profile-btn"
+            >
+              ← Back to Developers
+            </Link>
+
           </div>
+
           <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
-          <ProfileCreds education={profile.education} experience={profile.experience} />
-          {profile.githubusername ? (<ProfileGithub username={profile.githubusername} />) : null}
-        </div>
+
+          <div className="mt-4">
+            <ProfileAbout profile={profile} />
+          </div>
+
+          <div className="mt-4">
+            <ProfileCreds
+              education={profile.education}
+              experience={profile.experience}
+            />
+          </div>
+
+          {profile.githubusername && (
+            <div className="mt-4">
+              <ProfileGithub
+                username={profile.githubusername}
+              />
+            </div>
+          )}
+        </>
       );
     }
 
     return (
-      <div className="profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
+      <div className="profile-page">
+        <div className="container py-5">
+
+          <div className="text-center mb-5">
+
+            <h1 className="display-4 text-white fw-bold">
+              Developer Profile
+            </h1>
+
+            <p className="lead text-light">
+              Explore developer experience, education and projects.
+            </p>
+
           </div>
+
+          {profileContent}
+
         </div>
       </div>
     );

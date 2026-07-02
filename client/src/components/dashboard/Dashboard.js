@@ -7,10 +7,13 @@ import Spinner from "../common/Spinner";
 import ProfileActions from "./ProfileActions";
 import Experience from "./Experience";
 import Education from "./Education";
+import NewsGrid from "./NewsGrid";
 
 class Dashboard extends Component {
   componentDidMount() {
-    this.props.getCurrentProfile();
+    if (this.props.auth.isAuthenticated) {
+      this.props.getCurrentProfile();
+    }
   }
 
   onDeleteClick(e) {
@@ -30,14 +33,19 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-            </p>
+            <h2 className="text-muted">
+              Welcome   <Link
+                to={`/profile/${profile.handle}`}
+                style={{ textDecoration: "none", color: "#19e68c" }}
+              >
+                {user.name}
+              </Link>
+            </h2>
             <ProfileActions />
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
 
-            <div>
+            <div className="mt-5">
               <button
                 onClick={this.onDeleteClick.bind(this)}
                 className="btn btn-danger"
@@ -51,11 +59,13 @@ class Dashboard extends Component {
         // User is logged in but has no profile
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create Profile
-            </Link>
+            <h1 className="text-white">
+              Welcome, {user.name}
+            </h1>
+            <p className="text-white">
+              You have not yet setup a profile, please add some info.
+            </p>
+            <Link to="/create-profile" className="btn btn-lg btn-info"> Create Profile </Link>
           </div>
         );
       }
@@ -66,8 +76,18 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Dashboard</h1>
-              {dashboardContent}
+              <h1 className="display-4 text-center text-white mb-5">
+                Dashboard
+              </h1>
+
+              <div className="mb-5">
+                {dashboardContent}
+              </div>
+
+              <div className="mt-5">
+                <NewsGrid />
+              </div>
+
             </div>
           </div>
         </div>

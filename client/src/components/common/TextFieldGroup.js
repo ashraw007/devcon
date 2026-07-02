@@ -1,22 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const TextFieldGroup = ({
   name,
   placeholder,
   value,
-  label,
   error,
   info,
   type,
   onChange,
-  disabled
+  disabled,
+  showPasswordToggle
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const inputType =
+    showPasswordToggle && type === "password"
+      ? showPassword
+        ? "text"
+        : "password"
+      : type;
+
   return (
-    <div className="form-group mb-3">
+    <div className="form-group mb-3 position-relative">
       <input
-        type={type}
+        type={inputType}
         className={classnames("form-control form-control-lg", {
           "is-invalid": error
         })}
@@ -26,7 +36,18 @@ const TextFieldGroup = ({
         onChange={onChange}
         disabled={disabled}
       />
+
+      {showPasswordToggle && type === "password" && (
+        <span
+          className="password-toggle"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </span>
+      )}
+
       {info && <small className="form-text text-muted">{info}</small>}
+
       {error && <div className="invalid-feedback">{error}</div>}
     </div>
   );
@@ -38,13 +59,15 @@ TextFieldGroup.propTypes = {
   value: PropTypes.string.isRequired,
   info: PropTypes.string,
   error: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.string
+  disabled: PropTypes.bool,
+  showPasswordToggle: PropTypes.bool
 };
 
 TextFieldGroup.defaultProps = {
-  type: "text"
+  type: "text",
+  showPasswordToggle: false
 };
 
 export default TextFieldGroup;

@@ -68,22 +68,33 @@ class AddEducation extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
-                Go Back
+
+              <Link to="/dashboard" className="btn btn-outline-light mb-4">
+                ← Back to Dashboard
               </Link>
-              <h1 className="display-4 text-center">Add Education</h1>
-              <p className="lead text-center">
-                Add any school, bootcamp, etc. that you have attended
+
+              <h1 className="display-5 text-center text-white fw-bold">
+                Add Education
+              </h1>
+
+              <p className="lead text-center text-white mb-4">
+                Add your college, university, bootcamp or certification.
               </p>
-              <small className="d-block pb-3">* = Required Fields</small>
+
+              <small className="d-block pb-3 text-secondary">
+                * Required Fields
+              </small>
+
               <form onSubmit={this.onSubmit}>
+
                 <TextFieldGroup
-                  placeholder="* College"
+                  placeholder="* College / University"
                   name="school"
                   value={this.state.school}
                   onChange={this.onChange}
                   error={errors.school}
                 />
+
                 <TextFieldGroup
                   placeholder="* Degree or Certification"
                   name="degree"
@@ -91,6 +102,7 @@ class AddEducation extends Component {
                   onChange={this.onChange}
                   error={errors.degree}
                 />
+
                 <TextFieldGroup
                   placeholder="* Field of Study"
                   name="fieldofstudy"
@@ -98,7 +110,11 @@ class AddEducation extends Component {
                   onChange={this.onChange}
                   error={errors.fieldofstudy}
                 />
-                <h6>From Date</h6>
+
+                <label className="text-white mb-2">
+                  From Date
+                </label>
+
                 <TextFieldGroup
                   name="from"
                   type="date"
@@ -106,43 +122,57 @@ class AddEducation extends Component {
                   onChange={this.onChange}
                   error={errors.from}
                 />
-                <h6>To Date</h6>
+
+                <label className="text-white mb-2 mt-2">
+                  To Date
+                </label>
+
                 <TextFieldGroup
                   name="to"
                   type="date"
                   value={this.state.to}
                   onChange={this.onChange}
                   error={errors.to}
-                  disabled={this.state.disabled ? "disabled" : ""}
+                  disabled={this.state.disabled}
                 />
+
                 <div className="form-check mb-4">
+
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    name="current"
-                    value={this.state.current}
+                    id="current"
                     checked={this.state.current}
                     onChange={this.onCheck}
-                    id="current"
                   />
-                  <label htmlFor="current" className="from-check-label">
+
+                  <label
+                    htmlFor="current"
+                    className="form-check-label text-white"
+                  >
                     Currently Enrolled
                   </label>
+
                 </div>
+
                 <TextAreaFieldGroup
                   placeholder="Program Description"
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
                   error={errors.description}
-                  info="Tell us about the program that you were in"
+                  info="Tell us about your education or certification."
                 />
-                <input
+
+                <button
                   type="submit"
-                  value="Submit"
-                  className="btn btn-info btn-block mt-4"
-                />
+                  className="btn submit-btn w-100 mt-4"
+                >
+                  Save Education →
+                </button>
+
               </form>
+
             </div>
           </div>
         </div>

@@ -124,8 +124,8 @@ class CreateProfile extends Component {
       { label: "Student or Learning", value: "Student or Learning" },
       { label: "Frontend Developer", value: "Frontend Developer" },
       { label: "Backend Developer", value: "Backend Developer" },
-      {label: "MERN Stack Developer", value: "MERN Stack Developer" },
-      {label: "MEAN Stack Developer", value: "MEAN Stack Developer" },
+      { label: "MERN Stack Developer", value: "MERN Stack Developer" },
+      { label: "MEAN Stack Developer", value: "MEAN Stack Developer" },
       { label: "UI/UX Designer", value: "UI/UX Designer" },
       { label: "Intern", value: "Intern" },
       { label: "Other", value: "Other" }
@@ -136,11 +136,15 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
-              <p className="lead text-center">
+              <h1 className="display-4 text-center text-white">
+                Create Your Profile
+              </h1>
+              <p className="lead text-center text-white">
                 Let&apos;s get some information to make your profile stand out
               </p>
-              <small className="d-block pb-3">* = required fields</small>
+              <small className="d-block pb-3 text-secondary">
+                * = required fields
+              </small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="* Profile Handle"

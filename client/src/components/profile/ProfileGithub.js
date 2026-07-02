@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom'
 
 class ProfileGithub extends Component {
   constructor(props) {
@@ -16,62 +15,79 @@ class ProfileGithub extends Component {
 
   componentDidMount() {
     const { username } = this.props;
-    const { count, sort, clientId, clientSecret } = this.state;
 
 
-    fetch(
-      `${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
-      //  `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
-    )
+    fetch(`https://api.github.com/users/${username}/repos?per_page=5&sort=updated`)
       .then(res => res.json())
       .then(data => {
-        this.setState({repos: data});
-        // if (this.refs.myRef) {
-        //   this.setState({ repos: data });
-        //   console.log(data);
-        // }
+        console.log(data);
+
+        this.setState({
+          repos: Array.isArray(data) ? data : []
+        });
       })
       .catch(err => console.log(err));
   }
 
   render() {
-    const  repos  = this.state.repos;
-    // console.log(this.state.props);
+    const { repos } = this.state;
+    if (!Array.isArray(repos)) {
+      return null;
+    }
 
-    console.log(repos)
-    
-
-    const repoItems = repos.map(repo => (
-      // console.log(repo.html_url),
-      <div key={repo.id} className="card card-body border-success mb-2">
-        <div className="row">
-          <div className="col-md-6">
-            <h4>
-              <Link
-                to={{pathname: repo.html_url}}
-                className="text-success"
-                target="_blank"
-                rel="noopener noreferrer">
-                {repo.name}
-              </Link>
-            </h4>
-            <p>{repo.description}</p>
-          </div>
-          <div className="col-md-6">
-            <span className="badge badge-info mr-1">Stars: {repo.stargazers_count}</span>
-            <span className="badge badge-secondary mr-1">Stars: {repo.watchers_count}</span>
-            <span className="badge badge-success">Stars: {repo.forks_count}</span>
-          </div>
-        </div>
-      </div>
-    ));
     return (
-      <div ref="myRef">
-        <hr />
-        <h3 className="mb-4">Latest Github Repos</h3>
-        {repoItems}
+      <div className="github-section">
+
+        <h3 className="github-heading">
+          <span role="img" aria-label="rocket">
+            🚀
+          </span>{" "}
+          Latest GitHub Repositories
+        </h3>
+
+        <div className="repo-grid">
+
+          {repos.map(repo => (
+
+            <div
+              className="repo-card"
+              key={repo.id}
+            >
+
+              <h4>
+
+                <a
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="repo-link"
+                >
+                  {repo.name}
+                </a>
+
+              </h4>
+
+              <p>
+                {repo.description || "No description available."}
+              </p>
+
+              <div className="repo-stats">
+
+                <span role="img" aria-label="star">⭐</span> {repo.stargazers_count}
+
+                <span role="img" aria-label="watchers">👀</span> {repo.watchers_count}
+
+                <span role="img" aria-label="fork">🍴</span> {repo.forks_count}
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
       </div>
-      
     );
   }
 }

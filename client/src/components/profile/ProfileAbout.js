@@ -4,40 +4,47 @@ import isEmpty from "../../validation/isEmpty";
 
 class ProfileAbout extends Component {
   render() {
-    const  profile  = this.props.profile;
+    const { profile } = this.props;
 
-    // Get first name
-    const firstName = (profile.user === null) ? profile.handle : profile.user.name.trim().split(" ")[0] 
+    const firstName =
+      profile.user === null
+        ? profile.handle
+        : profile.user.name.trim().split(" ")[0];
 
-    // Skill List
     const skills = profile.skills.map((skill, index) => (
-      <div key={index} className="p-3">
-        <i className="fa fa-check" />
+      <span key={index} className="skill-badge">
+        <i className="fa fa-check me-2"></i>
         {skill}
-      </div>
+      </span>
     ));
 
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card card-body bg-light border-success mb-3">
-            <h3 className="text-center text-primary">{firstName} Bio</h3>
-            <p className="lead">
-              {isEmpty(profile.bio) ? (
-                <span>{firstName} does not have a bio</span>
-              ) : (
-                <span>{profile.bio}</span>
-              )}
-            </p>
-            <hr />
-            <h3 className="text-center text-primary">Skill Set</h3>
-            <div className="row">
-              <div className="d-flex flex-wrap justify-content-center align-items-center">
-                {skills}
-              </div>
-            </div>
+      <div className="profile-about-card">
+
+        <div className="mb-4">
+          <h3 className="profile-section-heading">
+            About {firstName}
+          </h3>
+
+          <p className="profile-bio">
+            {isEmpty(profile.bio)
+              ? `${firstName} hasn't added a bio yet.`
+              : profile.bio}
+          </p>
+        </div>
+
+        <hr className="profile-divider" />
+
+        <div className="mt-4">
+          <h3 className="profile-section-heading">
+            Tech Stack
+          </h3>
+
+          <div className="skills-container">
+            {skills}
           </div>
         </div>
+
       </div>
     );
   }

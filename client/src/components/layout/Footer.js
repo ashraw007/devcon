@@ -1,10 +1,20 @@
-import React from 'react'
+import React from "react";
 
 export default () => {
   return (
-  <footer className="bg-dark text-white mt-5 p-4" style={{ display: 'flex',justifyContent: 'space-evenly'}}>
-      <h6>Copyright &copy; {new Date().getFullYear()} DevCon</h6> 
-      <h6>Developed By Ashish SIngh Rawat</h6>
-  </footer>
-  )
-}
+    <footer
+      style={{
+        backgroundColor: "#0b1326",
+        color: "#fff",
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        padding: "20px",
+        marginTop: "40px",
+      }}
+    >
+      <h6>Copyright &copy; {new Date().getFullYear()} DevCon</h6>
+      <h6>Developed By Ashish Singh Rawat</h6>
+    </footer>
+  );
+};

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import GJULogo from '../../img/GJU.png'
+import DevConLogo from '../../img/devcon_logo.png'
 
 class Landing extends Component {
   componentDidMount() {
@@ -18,20 +18,31 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-mt-12 text-center">
-                <img className="display-4 mt-4"  style={{width: '250px'}} src={GJULogo}  alt="LOGO" />
-                <h1 className="display-6 mt-4">Guru Jambheshwar University of Science and Technology</h1>
+                <img className="display-4 mt-4" style={{ width: '250px' }} src={DevConLogo} alt="LOGO" />
+                <div className="status-container">
+                  <h4 className="system-status">
+                    <span className="status-dot"></span>
+                    System Status: Operational
+                  </h4>
+                </div>
+                <h1 className="display-4 mt-4 fw-bold">
+                  Connect. <span className="highlight-code">Code.</span> Collaborate.
+                </h1>
                 <p className="lead mt-4">
                   {" "}
-                  A platform where GJU developers connect and share
+                  The premier network for modern developers to share insights and build together.
                 </p>
                 <hr />
                 <div className="d-grid gap-2 col-6 mx-auto mt-4">
-                <Link to="/register" className="btn btn-lg btn-info btn-block mr-2">
-                  Sign Up
-                </Link>
-                <Link to="/login" className="btn btn-success btn-lg  btn-block">
-                  Login
-                </Link>
+                  <div className="auth-buttons">
+                    <Link to="/register" className="signup-btn">
+                      Sign Up <span>→</span>
+                    </Link>
+
+                    <Link to="/login" className="login-btn">
+                      <span>↪</span> Log In
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

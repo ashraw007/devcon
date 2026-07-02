@@ -67,15 +67,25 @@ class AddExperience extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
-                Go Back
+
+              <Link to="/dashboard" className="btn btn-outline-light mb-4">
+                ← Back to Dashboard
               </Link>
-              <h1 className="display-4 text-center">Add Experience</h1>
-              <p className="lead text-center">
-                Add any job or position that you have had in the past or current
+
+              <h1 className="display-5 text-center text-white fw-bold">
+                Add Experience
+              </h1>
+
+              <p className="lead text-center text-white mb-4">
+                Add your current or previous work experience.
               </p>
-              <small className="d-block pb-3">* = required fields</small>
+
+              <small className="d-block pb-3 text-secondary">
+                * Required fields
+              </small>
+
               <form onSubmit={this.onSubmit}>
+
                 <TextFieldGroup
                   placeholder="* Company"
                   name="company"
@@ -83,6 +93,7 @@ class AddExperience extends Component {
                   onChange={this.onChange}
                   error={errors.company}
                 />
+
                 <TextFieldGroup
                   placeholder="* Job Title"
                   name="title"
@@ -90,6 +101,7 @@ class AddExperience extends Component {
                   onChange={this.onChange}
                   error={errors.title}
                 />
+
                 <TextFieldGroup
                   placeholder="Location"
                   name="location"
@@ -97,7 +109,11 @@ class AddExperience extends Component {
                   onChange={this.onChange}
                   error={errors.location}
                 />
-                <h6>From Date</h6>
+
+                <label className="text-white mb-2">
+                  From Date
+                </label>
+
                 <TextFieldGroup
                   name="from"
                   type="date"
@@ -105,43 +121,57 @@ class AddExperience extends Component {
                   onChange={this.onChange}
                   error={errors.from}
                 />
-                <h6>To Date</h6>
+
+                <label className="text-white mb-2 mt-2">
+                  To Date
+                </label>
+
                 <TextFieldGroup
                   name="to"
                   type="date"
                   value={this.state.to}
                   onChange={this.onChange}
                   error={errors.to}
-                  disabled={this.state.disabled ? "disabled" : ""}
+                  disabled={this.state.disabled}
                 />
+
                 <div className="form-check mb-4">
+
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    name="current"
-                    value={this.state.current}
+                    id="current"
                     checked={this.state.current}
                     onChange={this.onCheck}
-                    id="current"
                   />
-                  <label htmlFor="current" className="form-check-label">
+
+                  <label
+                    htmlFor="current"
+                    className="form-check-label text-white"
+                  >
                     Current Job
                   </label>
+
                 </div>
+
                 <TextAreaFieldGroup
                   placeholder="Job Description"
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
                   error={errors.description}
-                  info="Tell us about the the position"
+                  info="Tell us about your responsibilities and achievements."
                 />
-                <input
+
+                <button
                   type="submit"
-                  value="Submit"
-                  className="btn btn-info btn-block mt-4"
-                />
+                  className="btn submit-btn w-100 mt-4"
+                >
+                  Save Experience →
+                </button>
+
               </form>
+
             </div>
           </div>
         </div>

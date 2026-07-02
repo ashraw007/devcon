@@ -5,54 +5,75 @@ import Moment from "react-moment";
 import { deleteExperience } from "../../actions/profileActions";
 
 class Experience extends Component {
-  onDeleteClick(id) {
+  onDeleteClick = id => {
     this.props.deleteExperience(id);
-  }
+  };
 
   render() {
-    const experience = this.props.experience.map(exp => (
+    const experienceRows = this.props.experience.map(exp => (
       <tr key={exp._id}>
         <td>{exp.company}</td>
+
         <td>{exp.title}</td>
+
         <td>
-          <Moment date={exp.from} format="DD/MM/YYYY" /> -
-          {exp.to === null ? (
-            " Now"
+          <Moment format="MMM YYYY">{exp.from}</Moment>
+          {" - "}
+          {exp.to ? (
+            <Moment format="MMM YYYY">{exp.to}</Moment>
           ) : (
-            <Moment date={exp.to} format="DD/MM/YYYY" />
+            <span className="present-badge">Present</span>
           )}
         </td>
-        <td>
+
+        <td className="text-end">
           <button
-            onClick={this.onDeleteClick.bind(this, exp._id)}
-            className="btn btn-danger"
+            onClick={() => this.onDeleteClick(exp._id)}
+            className="btn experience-delete-btn"
           >
             Delete
           </button>
         </td>
       </tr>
     ));
+
     return (
-      <div>
-        <h4 className="mb-4">Experience Credentials</h4>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Title</th>
-              <th>Years</th>
-              <th />
-            </tr>
-            {experience}
-          </thead>
-        </table>
+      <div className="experience-card mt-4">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h3 className="experience-heading">
+            <span role="img" aria-label="briefcase">
+              💼
+            </span>{" "}
+            Experience
+          </h3>
+
+          <span className="experience-count">
+            {this.props.experience.length} Experience
+          </span>
+        </div>
+
+        <div className="table-responsive">
+          <table className="table experience-table align-middle mb-0">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Duration</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>{experienceRows}</tbody>
+          </table>
+        </div>
       </div>
     );
   }
 }
 
 Experience.propTypes = {
-  deleteExperience: PropTypes.func.isRequired
+  deleteExperience: PropTypes.func.isRequired,
+  experience: PropTypes.array.isRequired
 };
 
 export default connect(

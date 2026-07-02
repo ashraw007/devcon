@@ -4,13 +4,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
-import DC from '../../img/DC.png';
+import DevCon_logo from '../../img/devcon_logo.png';
+import { withRouter } from "react-router-dom";
 
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
+
     this.props.clearCurrentProfile();
     this.props.logoutUser();
+
+    this.props.history.push("/");
   }
 
   render() {
@@ -29,10 +33,10 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <a
-            href="/#"
+          <button
             onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
+            className="nav-link border-0 bg-transparent"
+            style={{ color: "#fff" }}
           >
             <img
               src={user.avatar}
@@ -42,7 +46,7 @@ class Navbar extends Component {
               title="You must have a Gravatar connected to your email to display an image"
             />{" "}
             Logout
-          </a>
+          </button>
         </li>
       </ul>
     );
@@ -63,11 +67,14 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark  mb-4">
+      <nav className="navbar navbar-expand-lg custom-navbar mb-4">
         <div className="container-fluid">
-          <img style={{width: '70px'}} src={DC} alt="Logo"/>
-          <Link className="navbar-brand" to="/">
-            DevCon
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            <img
+              src={DevCon_logo}
+              alt="DevCon Logo"
+              style={{ width: "60px" }}
+            />
           </Link>
           <button
             className="navbar-toggler"
@@ -107,7 +114,9 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logoutUser, clearCurrentProfile }
-)(Navbar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logoutUser, clearCurrentProfile }
+  )(Navbar)
+);

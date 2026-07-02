@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import DevCon_logo from "../../img/devcon_logo.png";
 
 class Register extends Component {
   constructor() {
@@ -13,7 +14,10 @@ class Register extends Component {
       email: "",
       password: "",
       password2: "",
-      errors: {}
+      errors: {},
+      loading: false,
+      showPassword: false,
+      showConfirmPassword: false
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,7 +32,7 @@ class Register extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      this.setState({ errors: nextProps.errors, loading: false });
     }
   }
 
@@ -38,7 +42,7 @@ class Register extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    this.setState({ loading: true });
     const newUser = {
       name: this.state.name,
       email: this.state.email,
@@ -49,60 +53,99 @@ class Register extends Component {
     this.props.registerUser(newUser, this.props.history);
   }
 
+  togglePassword = () => {
+    this.setState(prevState => ({
+      showPassword: !prevState.showPassword
+    }));
+  };
+
+  toggleConfirmPassword = () => {
+    this.setState(prevState => ({
+      showConfirmPassword: !prevState.showConfirmPassword
+    }));
+  };
+
   render() {
     const { errors } = this.state;
 
     return (
-      <div className="register">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">
-                Create your DevConnector account
-              </p>
-              <form noValidate onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Name"
-                  name="name"
-                  type="name"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  error={errors.name}
-                />
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                  info="Use a Gravatar email"
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
-                />
-                <TextFieldGroup
-                  placeholder="Confirm Password"
-                  name="password2"
-                  type="password"
-                  value={this.state.password2}
-                  onChange={this.onChange}
-                  error={errors.password2}
-                />
-                <div className="d-grid gap-2">
-                 <button type="submit" className="btn btn-info btn-block mt-4">
-                  Submit
-                 </button>
-                </div>
-              </form>
-            </div>
+      <div className="register-page">
+        <div className="register-card">
+          <div className="text-center mb-4">
+            <img
+              src={DevCon_logo}
+              alt="DevCon Logo"
+              className="register-logo"
+            />
+
+            <h1 className="display-5 text-white fw-bold">
+              Sign Up
+            </h1>
+
+            <p className="text-white mb-0">
+              Create your DevCon account
+            </p>
           </div>
+
+          <form noValidate onSubmit={this.onSubmit}>
+            <TextFieldGroup
+              placeholder="Name"
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.onChange}
+              error={errors.name}
+            />
+
+            <TextFieldGroup
+              placeholder="Email Address"
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors.email}
+              info="Use a Gravatar email"
+            />
+
+            <TextFieldGroup
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              error={errors.password}
+              showPasswordToggle
+            />
+
+            <TextFieldGroup
+              placeholder="Confirm Password"
+              name="password2"
+              type="password"
+              value={this.state.password2}
+              onChange={this.onChange}
+              error={errors.password2}
+              showPasswordToggle
+            />
+
+            <button
+              type="submit"
+              className="btn submit-btn w-100 mt-3"
+              disabled={this.state.loading}
+            >
+              {this.state.loading ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  Creating Account...
+                </>
+              ) : (
+                "Create Account →"
+              )}
+            </button>
+          </form>
         </div>
       </div>
     );
